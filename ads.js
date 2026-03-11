@@ -15,7 +15,7 @@ popup.style.top = "0";
 popup.style.left = "0";
 popup.style.width = "100%";
 popup.style.height = "100%";
-popup.style.background = "rgba(0,0,0,0.0)";
+
 popup.style.display = "none";
 popup.style.zIndex = "9999";
 popup.style.cursor = "pointer";
