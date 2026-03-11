@@ -7,6 +7,7 @@
       "https://link3.com"
     ];
 
+    // get click count
     let clickCount = localStorage.getItem("popupClicks");
     if(clickCount === null){
       clickCount = 0;
@@ -14,36 +15,47 @@
       clickCount = parseInt(clickCount);
     }
 
-    // overlay create
-    let popup = document.createElement("div");
-    popup.style.position = "fixed";
-    popup.style.top = "0";
-    popup.style.left = "0";
-    popup.style.width = "100%";
-    popup.style.height = "100%";
-    popup.style.background = "rgba(0,0,0,0.4)";
-    popup.style.display = "none";
-    popup.style.zIndex = "9999";
-    popup.style.cursor = "pointer";
+    // get last popup timestamp
+    let lastShown = localStorage.getItem("popupLastShown");
+    let now = Date.now();
+    let popupDelay = 5000; // 5 sec
 
-    document.body.appendChild(popup);
+    if(lastShown !== null){
+      lastShown = parseInt(lastShown);
+    }else{
+      lastShown = 0;
+    }
 
-    // show after 5 sec
-    setTimeout(function(){
-      popup.style.display = "block";
-    }, 5000);
+    function showPopup(){
+      let popup = document.createElement("div");
+      popup.style.position = "fixed";
+      popup.style.top = "0";
+      popup.style.left = "0";
+      popup.style.width = "100%";
+      popup.style.height = "100%";
+      popup.style.background = "rgba(0,0,0,0.4)";
+      popup.style.zIndex = "9999";
+      popup.style.cursor = "pointer";
 
-    // click redirect
-    popup.onclick = function(){
-      if(clickCount >= links.length){
-        clickCount = links.length - 1;
-      }
+      document.body.appendChild(popup);
 
-      window.location.href = links[clickCount];
+      popup.onclick = function(){
+        if(clickCount >= links.length){
+          clickCount = links.length - 1;
+        }
 
-      clickCount++;
-      localStorage.setItem("popupClicks", clickCount);
-    };
+        window.location.href = links[clickCount];
+        clickCount++;
+        localStorage.setItem("popupClicks", clickCount);
+      };
+
+      localStorage.setItem("popupLastShown", Date.now());
+    }
+
+    // show popup only if 5 sec passed since last
+    if(now - lastShown >= popupDelay){
+      setTimeout(showPopup, popupDelay);
+    }
 
   });
 })();
