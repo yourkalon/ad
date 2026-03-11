@@ -1,61 +1,46 @@
-(function(){
-  document.addEventListener("DOMContentLoaded", function(){
+// তিনটি URL
+const redirectLinks = [
+  "https://example.com/1",
+  "https://example.com/2",
+  "https://example.com/3"
+];
 
-    let links = [
-      "https://link1.com",
-      "https://link2.com",
-      "https://link3.com"
-    ];
+let currentIndex = 0; // কোন URL-এ যাবে ট্র্যাকের জন্য
+const popup = document.createElement("div");
 
-    // get click count
-    let clickCount = localStorage.getItem("popupClicks");
-    if(clickCount === null){
-      clickCount = 0;
-    }else{
-      clickCount = parseInt(clickCount);
-    }
+// Overlay CSS
+popup.id = "popupOverlay";
+popup.style.position = "fixed";
+popup.style.top = "0";
+popup.style.left = "0";
+popup.style.width = "100%";
+popup.style.height = "100%";
+popup.style.background = "rgba(0,0,0,0.5)";
+popup.style.display = "none";
+popup.style.zIndex = "9999";
+popup.style.cursor = "pointer";
 
-    // get last popup timestamp
-    let lastShown = localStorage.getItem("popupLastShown");
-    let now = Date.now();
-    let popupDelay = 5000; // 5 sec
+document.body.appendChild(popup);
 
-    if(lastShown !== null){
-      lastShown = parseInt(lastShown);
-    }else{
-      lastShown = 0;
-    }
+// Function to show popup after 5s
+function showPopup() {
+  setTimeout(() => {
+    popup.style.display = "block";
+  }, 5000);
+}
 
-    function showPopup(){
-      let popup = document.createElement("div");
-      popup.style.position = "fixed";
-      popup.style.top = "0";
-      popup.style.left = "0";
-      popup.style.width = "100%";
-      popup.style.height = "100%";
-      popup.style.background = "rgba(0,0,0,0.4)";
-      popup.style.zIndex = "9999";
-      popup.style.cursor = "pointer";
+showPopup();
 
-      document.body.appendChild(popup);
+popup.addEventListener("click", function() {
+  const nextLink = redirectLinks[currentIndex];
+  currentIndex = (currentIndex + 1) % redirectLinks.length;
+  popup.style.display = "none";
+  window.location.href = nextLink;
+});
 
-      popup.onclick = function(){
-        if(clickCount >= links.length){
-          clickCount = links.length - 1;
-        }
-
-        window.location.href = links[clickCount];
-        clickCount++;
-        localStorage.setItem("popupClicks", clickCount);
-      };
-
-      localStorage.setItem("popupLastShown", Date.now());
-    }
-
-    // show popup only if 5 sec passed since last
-    if(now - lastShown >= popupDelay){
-      setTimeout(showPopup, popupDelay);
-    }
-
-  });
-})();
+// Back button
+window.addEventListener("pageshow", function(event) {
+  if (event.persisted) {
+    showPopup();
+  }
+});
