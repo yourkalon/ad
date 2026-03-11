@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Video Downloader</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#f1f3f6;
+}
+
+/* HEADER */
+
+header{
+
+background:#0f172a;
+color:white;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+
+}
+
+.logo{
+
+font-size:20px;
+font-weight:bold;
+
+}
+
+nav a{
+
+color:white;
+text-decoration:none;
+margin-left:15px;
+font-size:14px;
+
+}
+
+/* HERO */
+
+.hero{
+
+text-align:center;
+padding:40px 15px;
+
+}
+
+.hero h1{
+
+font-size:30px;
+margin-bottom:10px;
+
+}
+
+.hero p{
+
+color:#555;
+margin-bottom:20px;
+
+}
+
+/* INPUT */
+
+.inputBox{
+
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+
+}
+
+.inputBox input{
+
+width:350px;
+max-width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:6px 0 0 6px;
+
+}
+
+.inputBox button{
+
+padding:12px 22px;
+border:none;
+background:#2563eb;
+color:white;
+border-radius:0 6px 6px 0;
+cursor:pointer;
+
+}
+
+/* CONTAINER */
+
+.container{
+
+max-width:900px;
+margin:auto;
+padding:20px;
+
+}
+
+/* DOWNLOAD CARD */
+
+.downloadCard{
+
+background:white;
+max-width:500px;
+margin:auto;
+padding:30px;
+
+border-radius:15px;
+
+text-align:center;
+
+box-shadow:0 15px 40px rgba(0,0,0,0.15);
+
+border:3px solid #2563eb;
+
+}
+
+.downloadCard h2{
+
+font-size:26px;
+margin-bottom:10px;
+
+}
+
+.notice{
+
+color:#555;
+margin-bottom:15px;
+font-size:15px;
+
+}
+
+.progressText{
+
+font-weight:bold;
+margin-bottom:10px;
+color:#333;
+
+}
+
+/* PROGRESS BAR */
+
+.progressBox{
+
+width:100%;
+height:18px;
+background:#eee;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:20px;
+
+}
+
+.progress{
+
+width:0%;
+height:100%;
+
+background:linear-gradient(90deg,#22c55e,#16a34a);
+
+transition:0.5s;
+
+}
+
+/* BUTTON */
+
+.watchBtn{
+
+background:linear-gradient(45deg,#2563eb,#1d4ed8);
+
+border:none;
+
+padding:14px 25px;
+
+font-size:17px;
+
+color:white;
+
+border-radius:10px;
+
+cursor:pointer;
+
+animation:pulse 2s infinite;
+
+}
+
+.watchBtn:hover{
+
+transform:scale(1.05);
+
+}
+
+/* DOWNLOAD BUTTON */
+
+.downloadBtn{
+
+display:inline-block;
+
+margin-top:20px;
+
+background:#22c55e;
+
+padding:14px 25px;
+
+font-size:17px;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:10px;
+
+}
+
+#download{
+
+display:none;
+
+}
+
+/* BUTTON GLOW */
+
+@keyframes pulse{
+
+0%{box-shadow:0 0 0 0 rgba(37,99,235,0.7);}
+70%{box-shadow:0 0 0 15px rgba(37,99,235,0);}
+100%{box-shadow:0 0 0 0 rgba(37,99,235,0);}
+
+}
+
+/* FOOTER */
+
+footer{
+
+background:#0f172a;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:50px;
+font-size:14px;
+
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+nav{
+
+width:100%;
+text-align:center;
+margin-top:10px;
+
+}
+
+nav a{
+
+margin:0 8px;
+
+}
+
+.hero h1{
+
+font-size:24px;
+
+}
+
+.inputBox{
+
+flex-direction:column;
+align-items:center;
+
+}
+
+.inputBox input{
+
+border-radius:6px;
+margin-bottom:10px;
+width:100%;
+
+}
+
+.inputBox button{
+
+border-radius:6px;
+width:100%;
+
+}
+
+.downloadCard{
+
+padding:25px;
+
+}
+
+.watchBtn{
+
+width:100%;
+
+}
+
+.downloadBtn{
+
+width:100%;
+
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">🎬 UpFilesGo</div>
+
+
+</header>
+
+
+
+
+
+<div class="container">
+
+<div class="downloadCard">
+
+<h2>🎬 ভিডিও প্রস্তুত</h2>
+
+<p class="notice">
+
+ডাউনলোড আনলক করতে নিচের বাটনে ক্লিক করে <b>৩টি বিজ্ঞাপন</b> দেখুন
+
+</p>
+
+<div class="progressText">
+
+Step <span id="step">0</span> / 3 Ads
+
+</div>
+
+<div class="progressBox">
+
+<div class="progress" id="bar"></div>
+
+</div>
+
+<button class="watchBtn" onclick="showAd()">
+
+▶ ভিডিও ডাউনলোড করতে প্রথমে ৩টি বিজ্ঞাপন দেখুন
+
+</button>
+
+<div id="download">
+
+<a class="downloadBtn" href="https://example.com/video.mp4" target="_blank">
+
+⬇ এখনই ডাউনলোড করুন
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+<script>
+
+let ads = [
+
+"https://nickeldefiancepriest.com/zcvm0rch?key=93b158ea491b4f11e0adbacd15934c67",
+"https://pairturnnumerous.com/rze4wd8aa?key=74d74ecf1cacbe96436ceb718716741c",
+"https://villagetraitgarret.com/fz3ifw9n?key=255cb9b54aebe1dca0f89408b47e3fcf"
+
+];
+
+let step = 0;
+
+function showAd(){
+
+if(step < ads.length){
+
+window.open(ads[step], "_blank");
+
+step++;
+
+let percent = (step/3)*100;
+
+document.getElementById("bar").style.width = percent+"%";
+
+document.getElementById("step").innerText = step;
+
+}
+
+if(step == 3){
+
+document.getElementById("download").style.display="block";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
