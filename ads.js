@@ -1,6 +1,6 @@
 // তিনটি URL
 const redirectLinks = [
-  "https://nickeldefiancepriest.com/pynxydkcf?key=9fcaaab1932732baaffa3314295d33af",
+  "https://nickeldefiancepriest.com/zcvm0rch?key=93b158ea491b4f11e0adbacd15934c67",
   "https://pairturnnumerous.com/rze4wd8aa?key=74d74ecf1cacbe96436ceb718716741c",
   "https://villagetraitgarret.com/fz3ifw9n?key=255cb9b54aebe1dca0f89408b47e3fcf"
 ];
