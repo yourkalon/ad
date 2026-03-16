@@ -24,7 +24,7 @@ document.body.appendChild(popup);
 function showPopup() {
   setTimeout(() => {
     popup.style.display = "block";
-  }, 5000);
+  }, 15000);
 }
 
 showPopup(); // পেজ লোডে প্রথমবার popup দেখাবে
