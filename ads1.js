@@ -1,8 +1,8 @@
 // তিনটি URL
 const redirectLinks = [
-  "https://nickeldefiancepriest.com/zcvm0rch?key=93b158ea491b4f11e0adbacd15934c67",
-  "https://pairturnnumerous.com/rze4wd8aa?key=74d74ecf1cacbe96436ceb718716741c",
-  "https://villagetraitgarret.com/fz3ifw9n?key=255cb9b54aebe1dca0f89408b47e3fcf"
+  "https://pairturnnumerous.com/pwve65dx?key=ab9a2afbbceda029474e0e9f5ca91142",
+  "https://faithlesscourtroom.com/k65rtjdc?key=a3268d115d83b9e47f262ac146277d4e",
+  "https://www.effectivegatecpm.com/ee55cvxx?key=3a2a48730ebcee12d2abf34d3627d65d"
 ];
 
 let currentIndex = 0; // কোন URL-এ যাবে ট্র্যাকের জন্য
